@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For My Special One 💖</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+      text-align: center;
+      padding: 50px;
+      color: #333;
+    }
+    #message {
+      font-size: 24px;
+      margin-top: 30px;
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    button {
+      background-color: #ff7eb9;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      color: white;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 20px;
+    }
+    button:hover {
+      background-color: #ff65a3;
+    }
+    .heart {
+      color: red;
+      font-size: 32px;
+      animation: pulse 1s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    #audioWarning {
+      font-size: 14px;
+      color: #666;
+      margin-top: 10px;
+      display: none;
+    }
+    #quote {
+      font-size: 18px;
+      color: #ff7eb9;
+      font-weight: bold;
+      margin-top: 20px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Hey Khushi! 😊</h1>
+  <h1>FOR MY SPECIAL ONE 💖</h1>
+  <p>Click the button below, I have a little surprise for you...</p>
+  <button onclick="showMessage()" onmouseenter="showRandomQuote()">Click Me!</button>
+  <p id="quote"></p>
+
+  <div id="message">
+    <p>Khushi, your name is beautiful, but you're even more beautiful than that. The way you talk, your smile, your vibe — everything about you feels so natural and genuine. People like you are rare. You truly have a unique presence!💫</p>
+    <p class="heart">❤️❤️❤️</p>
+  </div>
+
+ 
+  <audio id="bgMusic" preload="auto" loop>
+    <source src="piyush-audio.mp3" type="audio/mpeg">
+   
+  </audio>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+  <script>
+    const quotes = [
+      "You are the sunshine of my life. 🌞",
+      "Every moment with you is like a beautiful dream. 💭",
+      "You're the reason I smile so much. 😊",
+      "Your presence brightens up my day. 🌟",
+      "You're my favorite everything. 💖"
+    ];
+
+    const quoteElement = document.getElementById('quote');
+
+    function showRandomQuote() {
+      const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+      quoteElement.textContent = randomQuote;
+      quoteElement.style.opacity = 1;
+    }
+
+    function showMessage() {
+     
+      const msg = document.getElementById('message');
+      msg.style.display = 'block';
+      setTimeout(() => {
+        msg.style.opacity = 1;
+      }, 10);
+
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+
+    
+      const music = document.getElementById("bgMusic");
+      music.volume = 0.7; // Set appropriate volume
+      
+      const playPromise = music.play();
+      
+      /*if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          // Only show warning if audio fails to play
+          document.getElementById('audioWarning').textContent = 
+            "If you don't hear music, please click the button again or check your browser's audio settings.";
+          document.getElementById('audioWarning').style.display = 'block';
+        });
+     // }*/
+    }
+  </script>
+
+</body>
+</html>
